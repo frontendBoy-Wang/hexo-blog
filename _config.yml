@@ -107,5 +107,5 @@ theme: aurora
 deploy:
   type: git
   repo: https://github.com/frontendBoy-Wang/frontendBoy-Wang.github.io.git
-  branch: master
+  branch: main
 
