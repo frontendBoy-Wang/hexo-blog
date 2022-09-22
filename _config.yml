@@ -3,18 +3,18 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: frontend-Wang Blog
-subtitle: 'it blogs'
+title: frontendBoy-Wang`s Blog
+subtitle: 'frontendBoy-Wang`s Blog'
 description: '一个追逐技术的全栈工程师'
 keywords: 前端,Golang,Java,JavaScript,Python.....
-author: frontendWang
+author: frontendBoy-Wang
 #网站使用的语言。对于简体中文用户来说，使用不同的主题可能需要设置成不同的值，请参考你的主题的文档自行设置，常见的有 zh-Hans和 zh-CN。
 language: zh-CN
 timezone: 'Asia/Shanghai'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+#url: https://frontendBoy-Wang.github.io/frontendBoy-Wang.github.io
 #permalink: :year/:month/:day/:title/
 permalink: /post/:title.html
 permalink_defaults:
