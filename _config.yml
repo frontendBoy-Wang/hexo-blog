@@ -6,7 +6,7 @@
 title: frontendBoy-Wang`s Blog
 subtitle: 'frontendBoy-Wang`s Blog'
 description: '一个追逐技术的全栈工程师'
-keywords: 前端,Golang,Java,JavaScript,Python.....
+keywords: 前端少年汪,frontendBoy-Wang,全栈工程师,前端,Golang,Java,JavaScript,Python,前端少年汪
 author: frontendBoy-Wang
 #网站使用的语言。对于简体中文用户来说，使用不同的主题可能需要设置成不同的值，请参考你的主题的文档自行设置，常见的有 zh-Hans和 zh-CN。
 language: zh-CN
@@ -42,7 +42,7 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 highlight:
