@@ -8,7 +8,7 @@ date: 2022-09-25 17:30:02
 tags: vue3 
 ---
 
-# ![image.png](https://cdn.nlark.com/yuque/0/2022/png/1388480/1645983129511-d0b98bdb-0d3f-4cc7-8116-6f085a76c1f4.png#clientId=u73ff4d65-cacd-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=394&id=ua641cb9b&margin=%5Bobject%20Object%5D&name=image.png&originHeight=383&originWidth=900&originalType=url&ratio=1&rotation=0&showTitle=false&size=43045&status=done&style=stroke&taskId=u69c5abc4-68f0-4c87-88fe-9412d8efd96&title=&width=925)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0d065e998673420ba80c983558519f19~tplv-k3u1fbpfcp-zoom-crop-mark:3024:3024:3024:1702.awebp?)
 # 前言
 > vue3如今已经成为默认版本了，相信大多数公司已经全面拥抱vue3了。
 > 而Vite作为新一代的新型前端构建工具，使用它能够显著提升前端开发体验。
@@ -33,22 +33,27 @@ tags: vue3
 > Vite 需要 [Node.js](https://nodejs.org/en/) 版本 >= 12.0.0。然而，有些模板需要依赖更高的 Node 版本才能正常运行，当你的包管理器发出警告时，请注意升级你的 Node 版本。
 
 **NPM:**
-```javascript
+---
+```js
 npm create vite@latest
 npm create @vitejs/app 
 npm init vite@latest
 npm init @vitejs/app 
 ```
+---
 ![image.png](https://cdn.nlark.com/yuque/0/2022/png/1388480/1645973789497-773229b1-cb17-4c42-b75f-4692517b8a22.png#clientId=u73ff4d65-cacd-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=132&id=ub650f221&margin=%5Bobject%20Object%5D&name=image.png&originHeight=264&originWidth=819&originalType=binary&ratio=1&rotation=0&showTitle=false&size=20310&status=done&style=none&taskId=u4086988a-865b-4c80-aaf3-6172703862e&title=&width=409.5)
 **Yarn:**
-```javascript
+---
+```js
  yarn create vite
 ```
+---
 ![image.png](https://cdn.nlark.com/yuque/0/2022/png/1388480/1645974001883-b0e25194-1830-4fb1-8c3c-d20740e518d5.png#clientId=u73ff4d65-cacd-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=321&id=u6448ce59&margin=%5Bobject%20Object%5D&name=image.png&originHeight=641&originWidth=780&originalType=binary&ratio=1&rotation=0&showTitle=false&size=68214&status=done&style=none&taskId=u3b12e236-1096-4c78-b6c8-78cf29a6706&title=&width=390)
 
 创建Vite项目的命令有很多，大同小异，但是我推荐使用 yarn的方式，谁用谁知道，命令简洁，速度更快，当然也有其它的方式，可以看一下官网的推荐方式，这个选择自己喜欢的就好了
 
-```javascript
+---
+```js
 # npm 6.x
 npm create vite@latest my-vue-app --template vue
 
@@ -61,8 +66,10 @@ yarn create vite my-vue-app --template vue
 # pnpm
 pnpm create vite my-vue-app -- --template vue
 ```
+---
 初始化好之后的目录：
-```javascript
+---
+```js
 │  ├─public # 静态资源目录
 │  │      favicon.ico 
 │  │
@@ -83,6 +90,7 @@ pnpm create vite my-vue-app -- --template vue
 │  │ vite.config.ts # vite配置文件
 
 ```
+---
 执行：`npm i`或者`yarn`安装依赖，再执行 `npm run dev` 或者 `yarn dev` 打开浏览器输入[http://localhost:3000](http://localhost:3000/)
 即可看到
 ![image.png](https://cdn.nlark.com/yuque/0/2022/png/1388480/1645979209791-12e57ad1-b262-4e19-924b-db63b331df18.png#clientId=u73ff4d65-cacd-4&crop=0&crop=0&crop=1&crop=0.8586&from=paste&height=457&id=u7c0ed23d&margin=%5Bobject%20Object%5D&name=image.png&originHeight=913&originWidth=1915&originalType=binary&ratio=1&rotation=0&showTitle=false&size=68728&status=done&style=none&taskId=u0fc99f69-12fb-4384-83ed-6d9eb1da740&title=&width=958)
@@ -106,13 +114,16 @@ Pinia 与 Vuex 的区别：
 - 没有 mutations，不用担心，state 的变化依然记录在 devtools 中。
 
 安装 pinia
-```javascript
+---
+```js
 yarn add pinia
 # or with npm
 npm install pinia
 ```
+---
 main.ts
-```javascript
+---
+```js
 import {createApp} from 'vue'
 import App from './App.vue'
 import {createPinia} from 'pinia'
@@ -122,8 +133,10 @@ app.use(createPinia())
 createApp(App).mount('#app')
 
 ```
+---
 新建store文件夹，新建index.ts
-```javascript
+---
+```js
 import {defineStore} from 'pinia'
 
 export const useStore = defineStore('storeId', {
@@ -137,8 +150,10 @@ export const useStore = defineStore('storeId', {
 })
 
 ```
+---
 组件内使用
-```javascript
+---
+```js
 <script setup lang="ts">
 import HelloWorld from './components/Hello'
 import {useStore} from "@/store/store";
@@ -156,6 +171,7 @@ console.log(useStore().$state)
 </template>
 
 ```
+---
 ### getters 用法介绍
 Pinia 中的 getter 与 Vuex 中的 getter 、组件中的计算属性具有相同的功能
 ### ![image.png](https://cdn.nlark.com/yuque/0/2022/png/1388480/1646050841734-28d52b34-fedc-4dcc-a20e-456393feb031.png#clientId=ub507500d-5f2d-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=407&id=u144d3c28&margin=%5Bobject%20Object%5D&name=image.png&originHeight=724&originWidth=663&originalType=binary&ratio=1&rotation=0&showTitle=false&size=66692&status=done&style=none&taskId=u7f7dd504-dfd2-40f2-bd64-b1a075ca404&title=&width=372.5)![image.png](https://cdn.nlark.com/yuque/0/2022/png/1388480/1646051046103-77fccc59-23d8-4ec6-b165-b466aff2e155.png#clientId=ub507500d-5f2d-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=409&id=u64e83288&margin=%5Bobject%20Object%5D&name=image.png&originHeight=818&originWidth=1029&originalType=binary&ratio=1&rotation=0&showTitle=false&size=103832&status=done&style=none&taskId=u872aa329-65fe-4267-9eaa-ab142be8ea8&title=&width=514.5)
@@ -175,7 +191,8 @@ Pinia 让 Actions 更加的灵活：
 ## VueRouter
 yarn add vue-router@4
 在 src 文件下新增 router 文件夹 => router.ts 文件,内容如下:
-```javascript
+---
+```js
 import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
 
 const routes: RouteRecordRaw[] = [
@@ -194,8 +211,10 @@ const router = createRouter({
 export default router
 
 ```
+---
 修改入口文件 mian.ts :
-```javascript
+---
+```js
 import {createApp} from 'vue'
 import App from './App.vue'
 import {createPinia} from 'pinia'
@@ -207,6 +226,7 @@ app.use(createPinia()).use(router)
 app.mount('#app')
 
 ```
+---
 
 到这里路由的基础配置已经完成了,更多配置信息可以查看 vue-router 官方文档:
 
@@ -227,7 +247,8 @@ vue-router4.x 支持 typescript，配置路由的类型是 RouteRecordRaw，这�
 ![image.png](https://cdn.nlark.com/yuque/0/2022/png/1388480/1646050580381-c70514d1-86a7-4ecc-96b4-af829dddc653.png#clientId=ub507500d-5f2d-4&crop=0&crop=0&crop=1&crop=1&from=paste&id=u32206047&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1653&originWidth=2778&originalType=url&ratio=1&rotation=0&showTitle=false&size=245417&status=done&style=none&taskId=u2820df2f-cc32-4109-a4e3-41f0773ee0f&title=)
 > Element Plus 目前还处于快速开发迭代中。目前使用2.0.1版可以结合vite-plugin-style-import插件按需加载样式。 unplugin-vue-components 按需自动导入组件 使用 Element Plus组件时可以直接使用
 
-```javascript
+---
+```js
 # 选择一个你喜欢的包管理器
 
 # NPM
@@ -240,8 +261,10 @@ $ yarn add element-plus
 $ pnpm install element-plus
 
 ```
+---
 main.ts
-```javascript
+---
+```js
 import {createApp} from 'vue'
 import App from './App.vue'
 import {createPinia} from 'pinia'
@@ -258,22 +281,26 @@ app
 app.mount('#app')
 
 ```
+---
 
 
 ## Axios封装
-```javascript
+---
+```js
 # 安装 axios 
 yarn add axios 
 # 安装 nprogress 用于请求 loading 
 # 也可以根据项目需求自定义其它 loading yarn add nprogress 
 # 类型声明，或者添加一个包含 `declare module 'nprogress' yarn add @types/nprogress --dev
 ```
+---
 实际使用中可以根据项目修改，比如RESTful api中可以自行添加put和delete请求,ResType也可以根据后端的通用返回值动态的去修改
 新增 http文件夹，http下新增 Http.ts 文件以及 api 文件夹:
 ![image.png](https://cdn.nlark.com/yuque/0/2022/png/1388480/1646042475231-d6b41308-93b2-4120-ac3c-a2af72508a01.png#clientId=ub507500d-5f2d-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=446&id=u6030d0f4&margin=%5Bobject%20Object%5D&name=image.png&originHeight=891&originWidth=283&originalType=binary&ratio=1&rotation=0&showTitle=false&size=43763&status=done&style=none&taskId=u075e99cb-7732-48ab-b0c2-60c9e95db85&title=&width=141.5)
 
 http.ts
-```javascript
+---
+```js
 import axios, {AxiosError, AxiosRequestConfig, AxiosResponse} from "axios";
 import NProgress from 'nprogress'
 import {Message} from '@element-plus/icons-vue'
@@ -450,10 +477,12 @@ const Http: Http = {
 export default Http;
 
 ```
+---
 在http文件夹下创建api文件夹用于统一存放接口文件,统一管理api
 http/api/login.ts
 ![image.png](https://cdn.nlark.com/yuque/0/2022/png/1388480/1646042618894-db465848-f667-4b9b-9d0a-671d55dc72e5.png#clientId=ub507500d-5f2d-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=136&id=u42af14b5&margin=%5Bobject%20Object%5D&name=image.png&originHeight=272&originWidth=1295&originalType=binary&ratio=1&rotation=0&showTitle=false&size=38293&status=done&style=none&taskId=u9c51786f-64ad-49ba-9902-c4052d25094&title=&width=647.5)
-```javascript
+---
+```js
 import http from "@/http/Http";
 
 export async function login(data: { userName: string, password: string }) {
@@ -461,6 +490,7 @@ export async function login(data: { userName: string, password: string }) {
 }
 
 ```
+---
 至此,一个简单地请求封装完成了!!!!
 除了自己手动封装 axios ,这里还推荐一个 vue3 的请求库: VueRequest,非常好用,下面来看看 VueRequest有哪些比较好用的功能吧!!!
 
@@ -480,13 +510,16 @@ export async function login(data: { userName: string, password: string }) {
 
 ## tsx支持
 首先需要安装官方维护的vite插件@vitejs/plugin-vue-jsx,这个插件其实核心还是@vue/babel-plugin-jsx,只是在这个插件上封装了一层供vite插件调用。所以关于vue的jsx语法规范可以直接参看@vue/babel-plugin-jsx,文档链接如下，建议大家可以先读一遍语法规范。官方写得比较详细，后续我也会结合实际讲解一下大部分规范的用法，[vue jsx语法规范](https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fvuejs%2Fjsx-next)。
-```javascript
+---
+```js
 $ npm install @vitejs/plugin-vue-jsx -D
 # or 
 $ yarn add @vitejs/plugin-vue-jsx -D 
 ```
+---
 安装完之后在vite.config.ts进行插件使用，代码如下：
-```javascript
+---
+```js
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import vueJsx from "@vitejs/plugin-vue-jsx";
@@ -499,6 +532,7 @@ export default defineConfig({
 });
 
 ```
+---
 
 
 ## 环境变量配置
@@ -523,7 +557,8 @@ export default defineConfig({
 # Vite 常用基础配置
 ### 基础配置
 运行 代理 和 打包 配置
-```javascript
+---
+```js
 //配置代理
     server: {
         host: '0.0.0.0',
@@ -544,13 +579,15 @@ export default defineConfig({
         },
     },
 ```
+---
 ### 生产环境生成 .gz 文件
 开启 gzip 可以极大的压缩静态资源，对页面加载的速度起到了显著的作用。
 
 使用 vite-plugin-compression 可以 gzip 或 brotli 的方式来压缩资源，这一步需要服务器端的配合，vite 只能帮你打包出 .gz 文件。此插件使用简单，你甚至无需配置参数，引入即可。
 `_# 安装_ yarn add --dev vite-plugin-compression`
 plugins 中添加：
-```javascript
+---
+```js
  import viteCompression from 'vite-plugin-compression'
 
 //配置插件
@@ -566,10 +603,12 @@ plugins 中添加：
         }),
     ],
 ```
+---
 ![image.png](https://cdn.nlark.com/yuque/0/2022/png/1388480/1646051294864-83f53139-9d0a-4e60-a08f-a854c1c88626.png#clientId=ub507500d-5f2d-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=412&id=u0bb66cc7&margin=%5Bobject%20Object%5D&name=image.png&originHeight=824&originWidth=698&originalType=binary&ratio=1&rotation=0&showTitle=false&size=77330&status=done&style=none&taskId=u76ba16c5-330f-4e9a-9e62-ca956d2b767&title=&width=349)
 ### 最终 vite.config.ts
 
-```javascript
+---
+```js
 import {defineConfig} from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -619,6 +658,7 @@ export default defineConfig({
 })
 
 ```
+---
 ## 常用插件
 可以查看官方文档：[https://vitejs.cn/plugins/](https://vitejs.cn/plugins/)
 

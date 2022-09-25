@@ -16,8 +16,10 @@ site:
   link: '/'
   language: zh-CN
   multi_language: true
-  logo: 'img/avatar.png'
-  avatar: 'img/avatar.png'
+  # logo: 'img/avatar.png'
+  # avatar: 'img/avatar.png'
+  logo: https://p3-passport.byteimg.com/img/user-avatar/46cf67c329246db441271a06f6132633~100x100.awebp
+  avatar: https://p3-passport.byteimg.com/img/user-avatar/46cf67c329246db441271a06f6132633~100x100.awebp
 #  logo: https://img-blog.csdnimg.cn/20210313122054101.png
 #  avatar: https://img-blog.csdnimg.cn/20210313122054101.png
 #  备案信息
