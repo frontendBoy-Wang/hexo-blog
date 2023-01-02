@@ -5,7 +5,7 @@ categories:
 cover: ../img/1.png
 feature: false
 date: 2022-12-21 22:46:32
-tags:
+tags: JavaScript
 ---
 
 > 前端常用utils工具方法小总结
