@@ -1,10 +1,10 @@
 ---
-title: 前端项目性能优化
+title: 前端项目(vue和react)性能优化
 categories:
-  - 技术
-cover: ../img/1.png
+  - 性能优化
+cover: ../img/xnyh.png
 feature: false
-date: 2023-02-02 16:05:46
+date: 2023-02-12 20:14:30
 tags:性能优化,前端, vue, React
 ---
 
