@@ -1,0 +1,277 @@
+---
+title: 前端项目性能优化.md
+categories:
+  - 前端
+cover: ../img/xnyh.png
+feature: false
+date: 2023-02-13 09:41:55
+tags:性能优化 vue react
+---
+
+
+![image.png](https://cdn.nlark.com/yuque/0/2023/png/1388480/1675243235121-11dbbbcf-d6cd-4137-a8d9-bc13d0c84d6c.png#averageHue=%239ea3b1&clientId=u1d1b33f1-f8a5-4&from=paste&height=1824&id=uc5758521&name=image.png&originHeight=3648&originWidth=5472&originalType=binary&ratio=1&rotation=0&showTitle=false&size=19015620&status=done&style=none&taskId=u3d549a16-a750-4847-8ace-783982bc18a&title=&width=2736)
+# 前言
+> 前端随着node等JavaScript运行时平台的出现，逐渐向工程化方向发展。项目开发也越来越规范化，但是随着项目的体积越来越大，依赖库越来越多，项目的运行，热更新和打包发布也是越来越慢，甚至卡顿。这个时候就需要对项目进行“瘦身”（性能优化）了。本文就围绕着如何给前端项目进行性能优化等技术点一一展开讨论
+
+
+# 为什么
+为什么要进行项目性能优化，其实这个问题我在前言中已经简单阐述过了。优化的目的是为了改善用户的使用体验，提高用户的留存率，你的产品页面和功能的响应的速度越快，交互更加的人性化，对用户更加的友好，那自然而然的就会收到用户的青睐啦。所以对项目的优化不仅仅是要从技术思维去作为出发点，同时也要从产品思维出发站在用户的角度(也就是一个使用者的角度)作为出发点。这样的优化才是有效优化，否则就是东施效颦了，乱搞一通，随大流。。。
+
+
+# Web 性能
+
+> 这里声明一下，本文只阐述web项目的性能优化。其他平台的项目是否适用，自行斟酌！
+
+
+在对web项目优化之前先了解一下web的性能指标，这里引用MDN中的一段描述。
+> Web 性能是客观的衡量标准，是用户对加载时间和运行时的直观体验。Web 性能指页面加载到可交互和可响应所消耗的时间，以及页面在交互时的流畅度——滚动是否顺滑？按钮能否点击？弹窗能否快速打开，动画是否平滑？Web 性能既包括客观的度量如加载时间，每秒帧数和到页面可交互的时间；也包括用户的对页面内容加载时间的主观感觉。
+> 页面响应时间越长，越多的用户就会放弃该网站。重要的是，通过使体验尽可能早地变得可用和交互，同时异步地加载长尾体验部分，来最大程度地减少加载和响应时间，并添加其他功能以降低延迟。
+
+
+### Web性能指标模型
+
+[RAIL](https://links.jianshu.com/go?to=https%3A%2F%2Fweb.dev%2Frail%2F) 是 Response、Animation、Idle 和 Load 的首字母缩写，是一种由 Google Chrome 团队于 2015 年提出的性能模型，用于提升浏览器内的用户体验和性能。
+
+![image.png](https://cdn.nlark.com/yuque/0/2023/png/1388480/1675236628083-8d8e96cf-ab1f-4472-b393-46bb36c7d775.png#averageHue=%23f6ddce&clientId=u9b2d51d8-8620-4&from=paste&height=267&id=u56a70fce&name=image.png&originHeight=306&originWidth=845&originalType=binary&ratio=1&rotation=0&showTitle=false&size=75700&status=done&style=none&taskId=u63a2cc51-93f7-4f83-b5ce-53876d92c93&title=&width=738.5)
+
+- **Response(响应)**：在50ms内处理事件
+  目标：在 100 ms内完成由用户输入发起的转换，让用户感觉交互是即时的。
+  ![image.png](https://cdn.nlark.com/yuque/0/2023/png/1388480/1675236647765-67ce0c8e-e0da-43ef-9ff6-7247f9eb4b5e.png#averageHue=%23e7c344&clientId=u9b2d51d8-8620-4&from=paste&id=u2b56eb0d&name=image.png&originHeight=417&originWidth=757&originalType=url&ratio=1&rotation=0&showTitle=false&size=139166&status=done&style=none&taskId=ude121bed-26b6-4ada-9688-3d26a60eb60&title=)
+- **Animatio(动画)**: 在10ms内生成一帧，目的为流畅的视觉效果
+  在 10 毫秒或更短的时间内生成动画的每一帧。从技术上来讲，每帧的最大预算为 **16 ms（1000 ms/每秒 60 帧≈16 ms）**，但是，浏览器需要大约 **6 ms**速来渲染一帧，因此，准则为每帧 **10ms**。
+- **Idle(空闲)**：最大限度增加空闲时间
+  最大限度增加空闲时间以提高页面在 **50 ms**内响应用户输入的几率
+- **Load(加载)**：在**5s**内交付并实现可交互
+  目前对于首次加载，在使用速度较慢 3G 连接的中端移动设备上，理想的目标是在**5s**或更短的事件内实现交互对于后续加载，理想的目标是在**2s**内加载页面。
+
+# 优化方向
+所以综上所述，所以我们优化的项主要是集中在：
+
+- http的请求的响应
+- 动画的视觉和流畅效果
+- 交互的响应速度
+- 页面加载的时间
+
+这四个大的方向
+
+当然除了这四个方向以为我觉得还可以有其他的途径去进一步的优化，当然了，这肯定也是要看应用场景的，根据业务的需要去具体问题具体分析的，不能够为了优化而去优化。
+也可以换个说法：
+
+- 传输资源的优化：比如图像资源，不同的格式类型会有不同的使用场景，在使用过程中判断是否恰当；
+- 加载过程的优化：比如加载延迟，是否有不需要在首屏展示的非关键信息，占用了页面的加载时间；
+- JavaScript的优化：JavaScript代码是否进行了压缩，书写是否规范，有无考虑内存泄漏等；
+- 关键渲染路径优化：比如是否存在不必要的回流与重绘等；
+- 本地存储和浏览器缓存。
+
+举个栗子🌰，从资源请求数量+代码执行效率两个角度来考虑，可以从DMO结构，JS脚本，webpack打包，服务端优化，ssr，框架(Vue,React)的优化等等
+# 怎么做？
+
+> 怎么做？当然是从四个大的方向先入手啦，然后在根据你的业务和场景，再细分。
+
+
+### http的请求的响应
+优化方案：
+
+- 并行处理请求和响应
+- 减少服务器响应时间
+- 部分资源可以使用懒加载或者预加载
+- 消除阻塞渲染的资源
+- 避免过大的网络负载，压缩传输的资源
+- 最小化关键请求的深度
+- 使用缓存策略
+- 减少重定向
+- 使用CDN内容分发网络
+- 根据需要使用SSR(服务端渲染)
+> Chrome限制每个域名最多执行6个TCP连接。如果您一次请求十二个资源，前6个将开始，后6个将排队。一旦其中一个请求完成，队列中的第一个请求项目将开始其请求过程。
+
+**浏览器发起一个http请求的过程**
+
+- Queuing (排队)排队时间
+- Stalled (停滞)发送请求之前等待的时间
+- DNS lookup (DNS查找)，
+- initial connection (初始连接)
+- SSL handshake (SSL握手)
+- Request sent (请求发送)发出网络请求所花费的时间
+- Waiting (等待)（到开始下载第一个字节的时间（TTFB））等待初始响应所花费的时间
+- Content Download (内容下载)接收响应数据所花费的时间
+### 动画的视觉和流畅效果
+> 前端前端实现动画有三种主流的方式:csss,canvas,dom，他们在浏览器中的渲染方式有所不同，所以优化的时候也要注意区分
+
+
+进行CSS的动画优化必须了解一定的浏览器的几个概念,图层、重绘、回流。
+#### css3动画的优化方案：
+
+- 缩小CSS，移除未使用的CSS
+- 避免DOM过大
+- 减少重绘和回流
+- 尽量将动画放在一个图层，避免多层污染
+- 尽量使用GPU加速
+
+#### Canvas动画优化方案
+> CSS虽然更加简单也更加保证性能的下限,但是要想实现更加复杂可控的动画,那就必须用到Canvas+JavaScript这个组合了.
+> Canvas作为浏览器提供的2D图形绘制API本身有一定的复杂度,优化的方法非常多,我们仅仅介绍几种比较主流的优化方式.
+
+- 运用requestAnimationFrame
+- 离屏canvas
+- 避免浮点运算
+- 减少调用Canvas API
+- 使用web worker
+
+### 交互的响应速度
+优化方案：
+
+- 减少第三方代码的影响
+- 减少Java Script执行时间
+- 最小化线程工作
+- 保持较低的请求数和传输大小
+- 使用节流和防抖减少事件的触发频率
+
+
+### 页面加载的时间
+优化方案：
+
+- 缩小javascript
+- 预连接到所需的来源
+- 预先价值关键请求
+- 减少对DOM的操作
+- 减少http请求
+- 图片懒加载
+- 优化TCP协议
+- 优化css
+- 异步加载脚本，防止主线程阻塞
+- 使用cdn
+- 代理缓存
+
+
+下面是一些关于前端框架项目的一些优化方法
+# Vue项目优化
+### 代码层面的优化
+
+- 路由懒加载
+```vue
+{
+path: '/',
+  name: 'home',
+    component: () => import(/* webpackChunkName: "home" */ './views/home/index.vue'),
+    meta: { isShowHead: true }
+  }
+
+```
+
+- computed 和 watch 区分使用场景
+    - computed： 是计算属性，依赖其它属性值，并且 computed 的值有缓存，只有它依赖的属性值发生改变，下一次获取 computed 的值时才会重新计算 computed 的值。当我们需要进行数值计算，并且依赖于其它数据时，应该使用 computed，因为可以利用 computed 的缓存特性，避免每次获取值时，都要重新计算；
+    - watch：类似于某些数据的监听回调 ，每当监听的数据变化时都会执行回调进行后续操作；当我们需要在数据变化时执行异步或开销较大的操作时，应该使用 watch，使用 watch 选项允许我们执行异步操作 ( 访问一个 API )，限制我们执行该操作的频率，并在我们得到最终结果前，设置中间状态。这些都是计算属性无法做到的。
+
+- v-if 和 v-show 区分使用场景
+    - v-if 适用于在运行时很少改变条件，不需要频繁切换条件的场景；v-show则适用于需要非常频繁切换条件的场景。这里要说的优化点在于减少页面中 dom 总数，我比较倾向于使用 v-if，因为减少了 dom 数量。
+- v-for 遍历必须为 item 添加 key，且避免同时使用 v-if
+    - v-for 遍历必须为 item 添加 key，循环调用子组件时添加 key，key 可以唯一标识一个循环个体，可以使用例如 item.id 作为 key
+    - 避免同时使用 v-if，v-for 比 v-if 优先级高，如果每一次都需要遍历整个数组，将会影响速度。
+- [vue-lazyload](https://links.jianshu.com/go?to=%255Bhttps%3A%2F%2Fgithub.com%2Fhilongjw%2Fvue-lazyload%255D%28https%3A%2F%2Fgithub.com%2Fhilongjw%2Fvue-lazyload%29)可参考下官方介绍，不再赘述。
+- style方面
+    - style文件按照模块划分，无论放在内外都<style lang="scss" scoped> 锁住样式，目的就是避免多人开发样式混乱，锁住之后内部的命名也可以很简短。
+    - 全局样式抽象化，将公共组件以及elementUI修改的样式建议都放到公共样式，抽象做的越好说明你的样式文件体积越小，复用率越高。
+- 合理组件化
+    - 使用重复率高的模块尽量封装成组件，包括布局的封装，按钮，表单，提示框，弹出框等，封装的组件只处理
+      类似业务，复用率越高越好
+    - 封装组件配置的 props 细化到一个字段，不要一个对象传进去，这样只传需要修改的参数，在子组件 props 里加数据类型，是否必传，以及默认值，便于排查错误，让传值更严谨
+    - Vue组件动态加载
+- Vue库dist里面的Runtime-only比Runtime+Compiler小30%
+- Vue的计算属性会根据依赖的data进行缓存
+- keep-alive可以缓存常用组件
+- Vuex中的getter也会根据依赖的state进行缓存
+- Vue全局错误处理errorHandle
+
+### 长列表性能优化
+> Vue 会通过 Object.defineProperty 对数据进行劫持，来实现视图响应数据的变化，然而有些时候我们的组件就是纯粹的数据展示，不会有任何改变，我们就不需要 Vue 来劫持我们的数据，在大量数据展示的情况下，这能够很明显的减少组件初始化的时间，那如何禁止 Vue 劫持我们的数据呢？可以通过 Object.freeze 方法来冻结一个对象，一旦被冻结的对象就再也不能被修改了。
+
+
+Tips：这里只是冻结了 users的值，引用不会被冻结，当我们需要 reactive 数据的时候，我们可以重新给 users 赋值。
+```vue
+export default {
+  data: () => ({
+    users: {}
+  }),
+  async created() {
+      const users = await axios.get("/api/users");
+      this.users = Object.freeze(users);
+  },
+  methods:{
+    // 改变值不会触发视图响应  
+    this.data.users[0] = newValue
+
+    // 改变引用依然会触发视图响应
+    this.data.users = newArray
+  }
+};
+
+```
+
+### 事件的销毁
+> Vue 组件销毁时，会自动清理它与其它实例的连接，解绑它的全部指令及事件监听器，但是仅限于组件本身的事件。如果在 js 内
+
+```vue
+created() {
+  addEventListener('click', this.click, false)
+},
+beforeDestroy() {
+  removeEventListener('click', this.click, false)
+}
+
+```
+
+- 第三方插件按需引入
+    - 我们在项目中经常会需要引入第三方插件，如果我们直接引入整个插件，会导致项目的体积太大，我们可以借助 babel-plugin-component ，然后可以只引入需要的组件，以达到减小项目体积的目的。
+
+
+# React项目优化
+### 代码层面的优化
+
+- 在constructor改变this指向代替箭头函数和render内绑定this，避免函数作为props带来不必要的rerender
+- shouldComponentUpdate，减少不不必要的rerender
+- PureComponent高性能组件只响应引用数据的深拷贝
+- 合并setState操作，减少虚拟dom对比频率
+- React路由动态加载react-loadable
+- 避免使用Context
+    - Context是react中跨组件树传递数据的一种方法，但是会让组件复用性变差，不推荐使用，有相应场景的话就使用redux。
+- 虚拟化长列表
+    - 当页面有非常多的元素时，会出现卡顿，这时可以使用虚拟滚动替代，仅渲染有限的内容，降低重新渲染的时间，以及创建DOM节点的数量，推荐库：react-window
+- key不要使用index
+    - 循环渲染时，数据变化频繁的话，建议使用唯一的key，例如id。
+- 多使用Memo、useMemo缓存
+    - 当传递的数据发生变化时才会重新渲染。
+- 组件卸载时清空还在执行的方法
+    - 例如定时器、轮询方法在卸载后还是会继续执行，卸载时要清空。
+- 使用fragement或者空标签<></>避免额外标签
+- 使用<Suspense /> 或者React.lazy懒加载，只支持default exports
+- 尽量使用纯组件，避免重复渲染
+- 在构造函数中进行函数 this 绑定
+- 避免使用内联样式属性
+- 不要在render中改变应用的状态
+- 为组件创造错误边界
+# 其他优化方法
+除了以上的一些优化方法，还有从其他维度的优化方向也可以对项目进行性能上的一些优化
+
+- 服务端渲染 SSR or 预渲染
+> 服务端渲染是指 Vue 在客户端将标签渲染成的整个 html 片段的工作在服务端完成，服务端形成的 html 片段直接返回给客户端这个过程就叫做服务端渲染。
+
+- webpack层面的优化
+    - 压缩图片媒体等静态资源
+    - 减少 ES6 转为 ES5 的冗余代码
+    - 提取公共代码
+    - 模版预编译
+    - 提取组件的css
+    - 优化SourceMap
+    - 构建结果输出分析
+- 开启gzip压缩
+> gzip 是 GNUzip 的缩写，最早用于 UNIX 系统的文件压缩。HTTP 协议上的 gzip 编码是一种用来改进 web 应用程序性能的技术，web 服务器和客户端（浏览器）必须共同支持 gzip。目前主流的浏览器，Chrome，firefox，IE等都支持该协议。常见的服务器如 Apache，Nginx，IIS 同样支持，gzip 压缩效率非常高，通常可以达到 70% 的压缩率，也就是说，如果你的网页有 30K，压缩之后就变成了 9K 左右。
+
+- 浏览器缓存
+> 为了提高用户加载页面的速度，对静态资源进行缓存是非常必要的，根据是否需要重新向服务器发起请求来分类，将 HTTP 缓存规则分为两大类（强制缓存，对比缓存），如果对缓存机制还不是了解很清楚的，可以参考作者写的关于 HTTP 缓存的文章《深入理解HTTP缓存机制及原理》。
+
+- cdn
+> 浏览器从服务器上下载 CSS、js 和图片等文件时都要和服务器连接，而大部分服务器的带宽有限，如果超过限制，网页就半天反应不过来。而 CDN 可以通过不同的域名来加载文件，从而使下载文件的并发连接数大大增加，且CDN 具有更好的可用性，更低的网络延迟和丢包率 。
+
+
+# 总结
+以上总结了那么多的方法 当然肯定还有许多其他方向的优化啦，本人技术有限，肯定不能够阐述完全，性能优化是个大话题，有不同意见的小伙伴可以评论区讨论一下
