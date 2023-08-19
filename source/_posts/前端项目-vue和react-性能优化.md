@@ -2,10 +2,10 @@
 title: 前端项目(vue和react)性能优化
 categories:
   - 性能优化
-cover: ../img/xnyh.png
+cover: ../img/7.png
 feature: false
 date: 2023-02-12 20:14:30
-tags:性能优化,前端, vue, React
+tags: 性能优化 前端 vue React
 ---
 
 
@@ -148,13 +148,13 @@ tags:性能优化,前端, vue, React
 ### 代码层面的优化
 
 - 路由懒加载
-```vue
+```javascript
 {
-path: '/',
+	path: '/',
   name: 'home',
-    component: () => import(/* webpackChunkName: "home" */ './views/home/index.vue'),
-    meta: { isShowHead: true }
-  }
+  component: () => import(/* webpackChunkName: "home" */ './views/home/index.vue'),
+  meta: { isShowHead: true }
+}
 
 ```
 
@@ -168,8 +168,9 @@ path: '/',
     - v-for 遍历必须为 item 添加 key，循环调用子组件时添加 key，key 可以唯一标识一个循环个体，可以使用例如 item.id 作为 key
     - 避免同时使用 v-if，v-for 比 v-if 优先级高，如果每一次都需要遍历整个数组，将会影响速度。
 - [vue-lazyload](https://links.jianshu.com/go?to=%255Bhttps%3A%2F%2Fgithub.com%2Fhilongjw%2Fvue-lazyload%255D%28https%3A%2F%2Fgithub.com%2Fhilongjw%2Fvue-lazyload%29)可参考下官方介绍，不再赘述。
+  
 - style方面
-    - style文件按照模块划分，无论放在内外都<style lang="scss" scoped> 锁住样式，目的就是避免多人开发样式混乱，锁住之后内部的命名也可以很简短。
+    - style文件按照模块划分，无论放在内外都`<style lang="scss" scoped>` 锁住样式，目的就是避免多人开发样式混乱，锁住之后内部的命名也可以很简短。
     - 全局样式抽象化，将公共组件以及elementUI修改的样式建议都放到公共样式，抽象做的越好说明你的样式文件体积越小，复用率越高。
 - 合理组件化
     - 使用重复率高的模块尽量封装成组件，包括布局的封装，按钮，表单，提示框，弹出框等，封装的组件只处理
@@ -187,7 +188,7 @@ path: '/',
 
 
 Tips：这里只是冻结了 users的值，引用不会被冻结，当我们需要 reactive 数据的时候，我们可以重新给 users 赋值。
-```vue
+```javascript
 export default {
   data: () => ({
     users: {}
@@ -210,7 +211,7 @@ export default {
 ### 事件的销毁
 > Vue 组件销毁时，会自动清理它与其它实例的连接，解绑它的全部指令及事件监听器，但是仅限于组件本身的事件。如果在 js 内
 
-```vue
+```javascript
 created() {
   addEventListener('click', this.click, false)
 },

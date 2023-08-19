@@ -8,6 +8,7 @@
 #! Site Configs
 #！ @docs https://aurora.tridiamond.tech/guide/configuration.html
 #! ---------------------------------------------------------------
+
 site:
   subtitle: frontendBoy-Wang's Blog
   author: 前端少年汪
@@ -149,7 +150,7 @@ copy_protection:
   enable: true
   author:
     cn: 作者
-    en: Author
+    en: 前端少年汪
   link:
     cn: 本文来自于
     en: Article is from
