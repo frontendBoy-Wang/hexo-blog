@@ -35,3 +35,5 @@ twitter:
 google_plus:
 fb_admins:
 fb_app_id:
+inject:
+#- <script src="https://cdn.jsdelivr.net/gh/lete114/CDN/Sum/sakura.js"></script> # 樱花动效

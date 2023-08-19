@@ -38,7 +38,7 @@ site:
 authors:
   frontendBoy-Wang:
     name: 前端少年汪
-    avatar: 'img/avatar.png'
+    avatar: 'img/avatar.jpg'
     link: https://github.com/frontendBoy-Wang
     description: 'Think like an artist, code like an artisan.'
     socials:
@@ -100,9 +100,9 @@ socials:
 #! ---------------------------------------------------------------
 site_meta:
   cdn: cn
-  favicon: 'img/avatar.png'
+  favicon: 'img/avatar.jpg'
   description: '一个追逐技术的全栈工程师'
-  keywords: '前端,Golang,Java,JavaScript,Python.....'
+  keywords: '前端少年汪,前端,后端,程序员,vue,react,Golang,Java,JavaScript,Python'
   author: '前端少年汪'
 
 #! ---------------------------------------------------------------
@@ -366,5 +366,20 @@ aurora_bot:
 #! ---------------------------------------------------------------
 injects:
   scripts:
+#    - <script src="https://cdn.jsdelivr.net/gh/lete114/CDN/Sum/sakura.js"></script>
+#    - <script src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
+#    - <script src="./source/js/sakura.js"></script>
   css:
     - <link rel="stylesheet" href="//at.alicdn.com/t/font_2476818_87vaqng7dno.css" />
+#    - <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
+
+
+#waline:
+#  enable: false
+#  recentComment: true
+#  reaction: false
+#  login: 'disable'
+#  meta: ['nick', 'mail']
+#  requiredMeta: ['nick', 'mail']
+#  commentSorting: 'latest'
+#  serverURL: '' # Server URL
