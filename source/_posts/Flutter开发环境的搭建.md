@@ -1,7 +1,9 @@
 ---
-title: Flutter开发环境的搭建.md
+title: Flutter开发环境的搭建
 categories:
   - 技术
+  - 环境搭建
+  - Flutter
 cover: ../img/2.jpeg
 feature: false
 date: 2023-09-04 22:46:35
