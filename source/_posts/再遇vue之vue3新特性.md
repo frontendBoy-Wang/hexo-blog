@@ -1,11 +1,11 @@
 ---
 title: 再遇vue之vue3新特性
 categories:
-  - 技术
-cover: ../img/1.png
-feature: false
+  - 前端
+cover: ../img/75.jpeg
+feature: true
 date: 2023-10-08 23:14:01
-tags:
+tags: vue JS 
 ---
 
 
