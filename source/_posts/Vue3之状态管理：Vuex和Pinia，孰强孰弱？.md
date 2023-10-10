@@ -9,7 +9,7 @@ tags: Pinia Vuex
 ---
 
 
-![4-wallhaven-0q7geq.jpg](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a35ba51a593a4558811b005fc02089ef~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=1700&h=1063&s=420599&e=jpg&b=350e0a)
+![4-wallhaven-0q7geq.jpg](../img/74.jpeg)
 
 # 什么状态管理
 在介绍Vuex和Pinia之前，我们有必要先了解一下什么是状态管理。
@@ -532,4 +532,4 @@ Pinia API 与 Vuex ≤4 有很大不同，即：
 以上就是vuex和pinia的全部介绍了。我个人觉得如果是vue2或者以前的老项目那就用vuex，如果是vue3的新项目那就用pinia，当然这也不是绝对的，更多的还是要具体情况具体分析的。
 我个人觉得pinia相比于vuex在使用角度来说，是要更加简洁方便一点的
 
-![1-wallhaven-p2zq23.png](https://img-blog.csdnimg.cn/img_convert/5fd0325787f60556ed8289ed3cca16b1.png)
+![4-wallhaven-0q7geq.jpg](../img/64.png)
