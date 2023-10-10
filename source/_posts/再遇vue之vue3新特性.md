@@ -10,7 +10,7 @@ tags: vue JS
 
 
 
-![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d1984a91cd0a422bac83be04c8135851~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=3840&h=2160&s=12009487&e=png&b=42557b)
+![image.png](../img/75.peg)
 
 >想起来上次好好认真学vue，还是刚实习那会儿，如今回头看，已是三年有余了。vue从当初的vue2也大升级到vue3了。新的 API，新的语法糖，新的响应式...   
 如今，我已不是以前那个小白了，对vue和js的使用也越来越熟练了，打算在好好系统的复习一下vue3的新特性。
