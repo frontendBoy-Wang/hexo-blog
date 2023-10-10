@@ -2,7 +2,7 @@
 title: 再遇vue之vue3新特性
 categories:
     - 前端
-cover: ../img/75.jpeg
+cover: ../img/74.jpeg
 feature: true
 date: 2023-10-10 19:14:01
 tags: Pinia Vuex
