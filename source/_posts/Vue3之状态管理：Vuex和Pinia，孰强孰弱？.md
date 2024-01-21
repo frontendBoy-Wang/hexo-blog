@@ -1,5 +1,5 @@
 ---
-title: 再遇vue之vue3新特性
+title: Vue3之状态管理：Vuex和Pinia，孰强孰弱？
 categories:
     - 前端
 cover: ../img/74.jpeg

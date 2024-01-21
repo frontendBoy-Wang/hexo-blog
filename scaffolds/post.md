@@ -3,7 +3,7 @@ title: {{ title }}
 date: {{ date }}
 tags:
 categories:
-- 技术
-cover: '../img/1.png'
-feature: false
+- 前端
+cover: '../img/0.png'
+feature: true
 ---
