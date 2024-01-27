@@ -1,3 +1,4 @@
+---
 title: 一个基于vite构建的vue3+pinia+ts+elementUI plus的初始化开箱即用的项目模版
 categories:
   - 前端

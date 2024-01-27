@@ -1,12 +1,11 @@
 ---
 title: Three.js深入浅出：4-three.js中的光源
 categories:
-   - 前端
    - three.js
 cover: ../img/2.jpeg
 feature: false
 date: 2023-12-19 22:46:35
-tags: 前端 webGL
+tags: 前端 webGL three.js
 ---
 
 
